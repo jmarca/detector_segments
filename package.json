@@ -6,7 +6,7 @@
     "dependencies": {
         "pg": "",
         "lodash": "",
-        "async": "~0.1.22",
+        "async": "",
         "geom_utils":"git://github.com/jmarca/geom_utils.git",
         "shapes_postgis":"git://github.com/jmarca/shapes_postgis.git",
         "couchdb_get_views":"git://github.com/jmarca/couchdb_get_views.git",
