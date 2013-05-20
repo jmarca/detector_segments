@@ -3,16 +3,19 @@
   "version": "0.0.1",
   "description": "Code that handles assigning roadway segments to in-road detectors, based on data",
   "main": "index.js",
-  "dependencies": {
-    "pg": "~0.8.2",
-    "underscore": "~1.3.3",
-      "async": "~0.1.22",
-      "geom_utils":"git://github.com/jmarca/geom_utils.git",
-      "shapes_postgis":"git://github.com/jmarca/shapes_postgis.git",
-      "date-functions": "git://github.com/jmarca/date-functions.git",
-    "request": "~2.10.0"
+    "dependencies": {
+        "pg": "",
+        "lodash": "",
+        "async": "~0.1.22",
+        "geom_utils":"git://github.com/jmarca/geom_utils.git",
+        "shapes_postgis":"git://github.com/jmarca/shapes_postgis.git",
+        "couchdb_get_views":"git://github.com/jmarca/couchdb_get_views.git",
+        "date-functions": "git://github.com/jmarca/date-functions.git",
+        "superagent":""
   },
-  "devDependencies": {},
+  "devDependencies": {
+      "should":""
+  },
   "scripts": {
     "test": "mocha"
   },
