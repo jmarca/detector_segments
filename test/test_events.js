@@ -45,28 +45,35 @@ describe('generate event times',function(){
         result.should.be.instanceOf(Array)
         result.should.have.lengthOf(7)
         result.forEach(function(row){
-            row.should.have.keys('ts','detectors')
+            row.should.have.keys('ts','nextts','detectors')
             return null
         })
         result[0].ts.should.eql('2012-09-06 14:00:00')
+        result[0].nextts.should.eql('2012-09-06 16:00:00')
         result[0].detectors.should.eql(['A'])
 
         result[1].ts.should.eql('2012-09-06 16:00:00')
+        result[1].nextts.should.eql('2012-09-12 01:00:00')
         result[1].detectors.should.eql(['A','C'])
 
         result[2].ts.should.eql('2012-09-12 01:00:00')
+        result[2].nextts.should.eql('2012-09-12 14:00:00')
         result[2].detectors.should.eql(['A'])
 
         result[3].ts.should.eql('2012-09-12 14:00:00')
+        result[3].nextts.should.eql('2012-09-16 03:00:00')
         result[3].detectors.should.eql(['A','D'])
 
         result[4].ts.should.eql('2012-09-16 03:00:00')
+        result[4].nextts.should.eql('2012-10-29 02:00:00')
         result[4].detectors.should.eql(['A','B','D'])
 
         result[5].ts.should.eql('2012-10-29 02:00:00')
+        result[5].nextts.should.eql('2012-12-28 10:00:00')
         result[5].detectors.should.eql(['A','B','D','E'])
 
         result[6].ts.should.eql('2012-12-28 10:00:00')
+        result[6].nextts.should.eql('2012-12-28 19:00:00')
         result[6].detectors.should.eql(['E'])
 
 
