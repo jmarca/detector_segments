@@ -1,3 +1,10 @@
+# This is good, but out of date
+
+The following talks about the pre-2015 way of figuring out start stop
+times by walking through the list of detectors on CouchDB.  It is
+accurate and a decent write-up, but probably not relevant to the
+actual code here anymore
+
 # walking through couchdb by detector
 
 I've been using the raw dbs, but now I think I have figured out how to
