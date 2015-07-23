@@ -91,3 +91,48 @@ select q.components, q.direction
 ) qq
  join tempseg.versioned_detector_segment_geometry linked
  ON (linked.components=qq.components and linked.direction=qq.direction)
+
+
+insert into tempseg2.detector_segment_conditions
+(components,direction,ts,endts,condition)
+
+WITH vrr AS (
+select aa.*,
+   nextval('tempseg.versioned_detector_ordering_sequence_id_seq') as versioned_sequence_id
+  from (
+   select distinct a.*
+   from  tempseg.detector_route_relation a
+   where detector_id
+ IN('vdsid_500010093', 'vdsid_500010101', 'vdsid_500010122', 'vdsid_500010133', 'vdsid_500010142', 'vdsid_500010152', 'vdsid_500011021', 'vdsid_500011032', 'vdsid_500011042', 'vdsid_500011052', 'vdsid_500011063', 'vdsid_500011072', 'vdsid_500011092', 'vdsid_500011112', 'vdsid_500011121', 'vdsid_500011143')
+    order by detector_sequence_id
+  ) aa
+)
+select distinct qq.*
+from(
+select q.components, q.direction
+, ('
+2012-03-06 16:00:00
+'::text)::timestamp without time zone as ts
+, ('
+2013-01-01 00:00:00
+'::text)::timestamp without time zone  as endts
+,E'have imputed data'::text as condition
+ from (
+      SELECT array[p.detector_id,vrrb.detector_id,n.detector_id] as components, vrrb.relation_direction as direction
+      FROM vrr vrrb
+      LEFT JOIN vrr p
+           ON ( vrrb.versioned_sequence_id=p.versioned_sequence_id+1 AND vrrb.refnum=p.refnum AND vrrb.relation_direction=p.relation_direction AND vrrb.numline=p.numline)
+      LEFT JOIN vrr n
+           ON ( n.versioned_sequence_id=vrrb.versioned_sequence_id+1 AND vrrb.refnum=n.refnum AND vrrb.relation_direction=n.relation_direction AND vrrb.numline=n.numline)
+      left join tempseg.numbered_route_lines rl on (rl.refnum=vrrb.refnum and vrrb.relation_direction=rl.direction)
+      ORDER BY vrrb.versioned_sequence_id
+ ) q
+) qq
+ join tempseg.versioned_detector_segment_geometry linked
+ ON (linked.components=qq.components and linked.direction=qq.direction)
+left outer join tempseg2.detector_segment_conditions e
+   ON (e.ts=qq.ts
+       and e.condition=qq.condition
+       and e.components=qq.components
+       and e.direction=qq.direction)
+ where e.ts is null;
