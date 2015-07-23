@@ -5,6 +5,8 @@ times by walking through the list of detectors on CouchDB.  It is
 accurate and a decent write-up, but probably not relevant to the
 actual code here anymore
 
+Absolutely no longer used.
+
 # walking through couchdb by detector
 
 I've been using the raw dbs, but now I think I have figured out how to
