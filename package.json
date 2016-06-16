@@ -12,7 +12,7 @@
     "lodash": "",
     "minimist": "^1.1.2",
     "pg": "",
-    "queue-async": "^1.0.7",
+    "d3-queue": "",
     "shapes_postgis": "git://github.com/jmarca/shapes_postgis.git",
     "superagent": ""
   },
