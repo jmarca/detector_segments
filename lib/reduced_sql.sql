@@ -17,7 +17,7 @@ insert into tempseg.reduced_detector_segment_conditions
 (components,ts, endts, condition, direction)
 with reduction as (
     SELECT components,min(ts) as ts, max(endts) as endts, condition, direction
-    FROM tempseg2.detector_segment_conditions
+    FROM tempseg.detector_segment_conditions
     WHERE ts > '2012-01-01' AND endts <= '2013-01-01'
     GROUP BY components,condition,direction
     ORDER BY components,ts
@@ -38,7 +38,7 @@ with reduction as (
       + EXTRACT(HOUR FROM (max(endts) -  min(ts))) as hoursdiff,
     min(ts) as ts,
     max(endts) as endts, condition, direction
-    FROM tempseg2.detector_segment_conditions
+    FROM tempseg.detector_segment_conditions
     WHERE ts > '2012-01-01' AND endts <= '2013-01-01'
     GROUP BY components,condition,direction
     ORDER BY components,ts
@@ -102,8 +102,8 @@ with
 beginners as (
    SELECT
      a.*
-    FROM tempseg2.detector_segment_conditions a
-    left outer JOIN tempseg2.detector_segment_conditions b
+    FROM tempseg.detector_segment_conditions a
+    left outer JOIN tempseg.detector_segment_conditions b
     ON (a.ts=b.endts and a.condition=b.condition and a.components=b.components and a.direction=b.direction)
     WHERE a.ts > '2012-01-01' AND a.endts <= '2013-01-01'
     and b.endts is null
@@ -112,8 +112,8 @@ beginners as (
 enders as (
    SELECT
      a.*
-    FROM tempseg2.detector_segment_conditions a
-    left outer JOIN tempseg2.detector_segment_conditions b
+    FROM tempseg.detector_segment_conditions a
+    left outer JOIN tempseg.detector_segment_conditions b
     ON (a.endts=b.ts and a.condition=b.condition and a.components=b.components and a.direction=b.direction)
     WHERE a.ts > '2012-01-01' AND a.endts <= '2013-01-01'
     and b.ts is null
@@ -171,7 +171,7 @@ order by b.components,b.ts
 --       + EXTRACT(HOUR FROM (max(endts) -  min(ts))) as hoursdiff,
 --     min(ts) as ts,
 --     max(endts) as endts, condition, direction
---     FROM tempseg2.detector_segment_conditions
+--     FROM tempseg.detector_segment_conditions
 --     WHERE ts > '2012-01-01' AND endts <= '2013-01-01'
 --     GROUP BY components,condition,direction
 --     ORDER BY components,ts
@@ -224,7 +224,7 @@ order by b.components,b.ts
 -- osm2=#
 
 -- perhaps the best solution is to just query the
--- tempseg2.detector_segment_conditions table in the JS and within the
+-- tempseg.detector_segment_conditions table in the JS and within the
 -- program piece together effective start and end times for the
 -- couchdb queries, or maybe just list them as keys and request all
 -- keys.
