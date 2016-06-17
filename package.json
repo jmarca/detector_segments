@@ -7,14 +7,16 @@
     "async": "",
     "config_okay": "",
     "couchdb_get_views": "git://github.com/jmarca/couchdb_get_views.git",
+    "d3-queue": "",
     "date-functions": "git://github.com/jmarca/date-functions.git",
+    "detector_segment_conditions": "github:jmarca/detector_segment_conditions",
     "geom_utils": "git://github.com/jmarca/geom_utils.git",
     "lodash": "",
     "minimist": "^1.1.2",
     "pg": "",
-    "d3-queue": "",
     "shapes_postgis": "git://github.com/jmarca/shapes_postgis.git",
-    "superagent": ""
+    "superagent": "",
+    "versioned_detector_segments": "github:jmarca/versioned_detector_segments"
   },
   "devDependencies": {
     "should": ""
