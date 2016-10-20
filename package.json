@@ -9,6 +9,7 @@
     "couchdb_get_views": "git://github.com/jmarca/couchdb_get_views.git",
     "d3-queue": "",
     "date-functions": "git://github.com/jmarca/date-functions.git",
+    "detector_route_relation": "github:jmarca/detector_route_relation",
     "detector_segment_conditions": "github:jmarca/detector_segment_conditions",
     "geom_utils": "git://github.com/jmarca/geom_utils.git",
     "lodash": "",
